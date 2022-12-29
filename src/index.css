@@ -1,0 +1,36 @@
+@import "/node_modules/nes.css/css/nes.css";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 10px 15px;
+}
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #D0B8A8;
+  width: 100%;
+}
+
+@media (max-width: 520px) {
+
+  .nes-input,
+  .nes-textarea {
+    width: 100% !important;
+  }
+
+  .bubble-container {
+    flex-direction: column;
+    gap: 10px !important;
+  }
+
+  .nes-octocat {
+    order: 1;
+    align-self: flex-start;
+  }
+}

@@ -1,0 +1,10 @@
+.nes-balloon p {
+    color: black;
+}
+
+.bubble-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
