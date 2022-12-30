@@ -16,32 +16,36 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
   const [titleError, setTitleError] = useState("");
   const [descriptionError, setdescriptionError] = useState("");
 
-  const isTitleEmpty = () => {
-    if (title === "") {
-      return true;
-    } else return false;
-  };
+  const isTitleEmpty = title === "";
 
-  const isDescriptionEmpty = () => {
-    if (description === "") {
-      return true;
-    } else return false;
-  };
+  const isDescriptionEmpty = description === "";
+
+  const IsTitleLong = title.length > 25;
+
+  const isDescriptionLong = description.length > 45;
 
   const [msgError, setMsgError] = useState({});
 
   const handdleSubmit = (e) => {
     e.preventDefault();
-    if (isTitleEmpty() || isDescriptionEmpty()) {
+    if (isTitleEmpty || isDescriptionEmpty) {
       return (
         setTitleError("is-error"),
         setdescriptionError("is-error"),
         setMsgError({
           opacity: 1,
           transform: "scale(1)",
-        }),
-        console.log(msgError)
+          color: "#e76e55",
+        })
       );
+    } else if (IsTitleLong || isDescriptionLong) {
+      setTitleError("is-warning");
+      setdescriptionError("is-warning");
+      setMsgError({
+        opacity: 1,
+        transform: "scale(1)",
+        color: "#f7d51d",
+      });
     } else {
       createNewTask(title.trim(), description.trim());
       setTitleError("");
@@ -74,7 +78,9 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
         ></textarea>
       </div>
       <span className="error-msg" style={msgError}>
-        Your task should have both a title and a description
+        {isTitleEmpty || isDescriptionEmpty
+          ? "Your task should have both a title and a description"
+          : "You've reached your maximum limit of characters allowed"}
       </span>
       <button className="nes-btn is-primary">Create</button>
     </form>

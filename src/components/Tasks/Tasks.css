@@ -2,3 +2,9 @@
     color: #00000071;
     border-bottom: 1px solid rgba(0, 0, 0, 0.356);
 }
+
+.task-container {
+    width: 100%;
+    word-wrap: break-word;
+    text-align: center;
+}

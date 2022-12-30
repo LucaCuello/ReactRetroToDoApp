@@ -23,7 +23,6 @@
 }
 
 .error-msg {
-    color: #e76e55;
     font-size: 12px;
     opacity: 0;
     transform: scale(0);
