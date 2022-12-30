@@ -17,6 +17,24 @@ body {
   width: 100%;
 }
 
+/* Custom scroll-bar */
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #D0B8A8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cb7066;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #683a35;
+}
+
 @media (max-width: 520px) {
 
   .nes-input,
