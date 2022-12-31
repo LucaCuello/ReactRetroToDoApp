@@ -14,10 +14,7 @@ export const Tasks = ({ tasks }) => {
       ) : (
         tasks.map((task) => {
           return (
-            <div
-              className="task-container"
-              key={Math.floor(Math.random() * 1000)}
-            >
+            <div className="task-container" key={task.id}>
               <h2>{task.title}</h2>
               <p className="task-description">{task.description}</p>
             </div>

@@ -22,9 +22,15 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
 
   const IsTitleLong = title.length > 25;
 
-  const isDescriptionLong = description.length > 45;
+  const isDescriptionLong = description.length > 110;
 
-  const [msgError, setMsgError] = useState({});
+  const isTitleWhiteSpace = title.replace(/\s+/g, "").length === 0;
+
+  const isDescriptionWhiteSpace = description.replace(/\s+/g, "").length === 0;
+
+  const [msgErrorStyle, setMsgErrorStyle] = useState({});
+
+  const [errorType, setErrorType] = useState("");
 
   const handdleSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +38,8 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
       return (
         setTitleError("is-error"),
         setdescriptionError("is-error"),
-        setMsgError({
+        setErrorType("Your task should have both a title and a description"),
+        setMsgErrorStyle({
           opacity: 1,
           transform: "scale(1)",
           color: "#e76e55",
@@ -41,7 +48,17 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
     } else if (IsTitleLong || isDescriptionLong) {
       setTitleError("is-warning");
       setdescriptionError("is-warning");
-      setMsgError({
+      setErrorType("You've reached your maximum limit of characters allowed");
+      setMsgErrorStyle({
+        opacity: 1,
+        transform: "scale(1)",
+        color: "#f7d51d",
+      });
+    } else if (isTitleWhiteSpace || isDescriptionWhiteSpace) {
+      setTitleError("is-warning");
+      setdescriptionError("is-warning");
+      setErrorType("White spaces are not allowed");
+      setMsgErrorStyle({
         opacity: 1,
         transform: "scale(1)",
         color: "#f7d51d",
@@ -52,7 +69,7 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
       setdescriptionError("");
       setTitle("");
       setDescription("");
-      setMsgError({});
+      setMsgErrorStyle({});
       e.target.reset();
     }
   };
@@ -77,12 +94,14 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
       </div>
-      <span className="error-msg" style={msgError}>
-        {isTitleEmpty || isDescriptionEmpty
-          ? "Your task should have both a title and a description"
-          : "You've reached your maximum limit of characters allowed"}
+      <span className="error-msg" style={msgErrorStyle}>
+        {errorType}
       </span>
       <button className="nes-btn is-primary">Create</button>
     </form>
   );
 };
+
+// {isTitleEmpty || isDescriptionEmpty
+//   ? "Your task should have both a title and a description"
+//   : "You've reached your maximum limit of characters allowed"}

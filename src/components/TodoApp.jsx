@@ -12,6 +12,7 @@ export const TodoApp = () => {
 
   const createTask = (newTask) => {
     if (!newTask) return;
+    Object.assign(newTask, { id: StoragedTasks.length });
     setStoragedTasks((task) => (task = [...task, newTask]));
   };
 
@@ -23,22 +24,20 @@ export const TodoApp = () => {
     <>
       <Container
         classList="nes-container is-centered with-title welcome-message"
-        children={<WelcomeMessage></WelcomeMessage>}
-      ></Container>
+        children={<WelcomeMessage />}
+      />
       <Container
         classList="nes-container is-dark with-title is-centered"
-        children={
-          <CreateTaskContainer saveTask={createTask}></CreateTaskContainer>
-        }
-      ></Container>
+        children={<CreateTaskContainer saveTask={createTask} />}
+      />
       <Container
         classList="nes-container with-title is-centered"
-        children={<Tasks tasks={StoragedTasks}></Tasks>}
-      ></Container>
+        children={<Tasks tasks={StoragedTasks} />}
+      />
       <Container
         classList="nes-container is-dark with-title footer-container"
-        children={<Footer></Footer>}
-      ></Container>
+        children={<Footer />}
+      />
     </>
   );
 };
