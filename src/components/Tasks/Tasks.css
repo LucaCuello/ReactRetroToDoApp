@@ -1,10 +1,28 @@
 .task-description {
     color: #00000071;
-    border-bottom: 2px solid #0000002d;
 }
 
 .task-container {
-    width: 100%;
-    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
     text-align: center;
+    word-wrap: break-word;
+    width: 100%;
+    border: 2px solid #0000002a;
+    padding: 20px;
+}
+
+.task-container p {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.delete-task {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }

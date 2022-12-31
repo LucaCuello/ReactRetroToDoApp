@@ -16,6 +16,11 @@ export const TodoApp = () => {
     setStoragedTasks((task) => (task = [...task, newTask]));
   };
 
+  const deleteTask = (id) => {
+    let tasks = StoragedTasks.filter((task) => task.id !== id);
+    setStoragedTasks(tasks);
+  };
+
   useEffect(() => {
     localStorage.setItem("List", JSON.stringify(StoragedTasks));
   }, [StoragedTasks]);
@@ -32,7 +37,7 @@ export const TodoApp = () => {
       />
       <Container
         classList="nes-container with-title is-centered"
-        children={<Tasks tasks={StoragedTasks} />}
+        children={<Tasks tasks={StoragedTasks} removeTask={deleteTask} />}
       />
       <Container
         classList="nes-container is-dark with-title footer-container"
