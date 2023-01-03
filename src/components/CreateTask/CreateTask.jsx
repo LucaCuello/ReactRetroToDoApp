@@ -3,7 +3,7 @@ import "./CreateTask.css";
 import { CreateTaskForm } from "../CreateTaskForm/CreateTaskForm";
 import { CreateTaskInfo } from "../CreateTaskInfo/CreateTaskInfo";
 
-export const CreateTaskContainer = ({ saveTask }) => {
+export const CreateTask = ({ saveTask }) => {
   return (
     <>
       <CreateTaskInfo></CreateTaskInfo>

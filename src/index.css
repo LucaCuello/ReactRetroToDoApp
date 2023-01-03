@@ -6,8 +6,9 @@
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  max-width: 1000px;
+  max-width: 920px;
   margin: 0 auto;
+  gap: 15px;
   padding: 10px 15px;
 }
 
@@ -17,10 +18,14 @@ body {
   width: 100%;
 }
 
+.nes-container {
+  margin: 0 !important;
+}
+
 /* Custom scroll-bar */
 
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -28,11 +33,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cb7066;
+  background: #212529;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #683a35;
+  background: #2e3236
 }
 
 @media (max-width: 520px) {

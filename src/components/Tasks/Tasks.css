@@ -1,5 +1,5 @@
 .task-description {
-    color: #00000071;
+    color: #000000b7;
 }
 
 .task-container {
@@ -10,12 +10,19 @@
     position: relative;
     text-align: center;
     word-wrap: break-word;
+    gap: 15px;
     width: 100%;
     border: 2px solid #0000002a;
     padding: 20px;
+    transition: all 1s ease;
 }
 
-.task-container p {
+.checkbox-desc {
+    color: #00000065;
+}
+
+.task-container p,
+.task-container h2 {
     width: 100%;
     padding: 0;
     margin: 0;

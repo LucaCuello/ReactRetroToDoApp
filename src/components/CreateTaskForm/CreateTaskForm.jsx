@@ -20,7 +20,7 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
 
   const isDescriptionEmpty = description === "";
 
-  const IsTitleLong = title.length > 25;
+  const IsTitleLong = title.length > 40;
 
   const isDescriptionLong = description.length > 110;
 

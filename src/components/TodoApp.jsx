@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { WelcomeMessage } from "./WelcomeMessage/WelcomeMessage";
-import { CreateTaskContainer } from "./CreateTask/CreateTask";
-import { Tasks } from "./Tasks/Tasks";
 import { Container } from "./Container/Container";
+import { WelcomeMessage } from "./WelcomeMessage/WelcomeMessage";
+import { CreateTask } from "./CreateTask/CreateTask";
+import { Tasks } from "./Tasks/Tasks";
+import { CompletedTasks } from "./CompletedTasks/CompletedTasks";
 import { Footer } from "./Footer/Footer";
 
 export const TodoApp = () => {
@@ -10,15 +11,34 @@ export const TodoApp = () => {
     JSON.parse(localStorage.getItem("List")) || []
   );
 
+  const completedTasks =
+    JSON.parse(localStorage.getItem("CompletedTasks")) || [];
+
   const createTask = (newTask) => {
     if (!newTask) return;
-    Object.assign(newTask, { id: StoragedTasks.length });
+    newTask.id = crypto.randomUUID();
     setStoragedTasks((task) => (task = [...task, newTask]));
   };
 
   const deleteTask = (id) => {
-    let tasks = StoragedTasks.filter((task) => task.id !== id);
-    setStoragedTasks(tasks);
+    setStoragedTasks(StoragedTasks.filter((task) => task.id !== id));
+  };
+
+  const deleteAllTasks = () => {
+    setStoragedTasks([]);
+  };
+
+  const deleteAllCompletedTasks = () => {
+    localStorage.removeItem("CompletedTasks");
+    document.location.reload();
+  };
+
+  const markAsDone = (id, completedTask) => {
+    setStoragedTasks(StoragedTasks.filter((task) => task.id !== id));
+    localStorage.setItem(
+      "CompletedTasks",
+      JSON.stringify([...completedTasks, completedTask])
+    );
   };
 
   useEffect(() => {
@@ -33,12 +53,33 @@ export const TodoApp = () => {
       />
       <Container
         classList="nes-container is-dark with-title is-centered"
-        children={<CreateTaskContainer saveTask={createTask} />}
+        children={<CreateTask saveTask={createTask} />}
       />
       <Container
         classList="nes-container with-title is-centered"
-        children={<Tasks tasks={StoragedTasks} removeTask={deleteTask} />}
+        children={
+          <Tasks
+            tasks={StoragedTasks}
+            removeTask={deleteTask}
+            deleteAllTasks={deleteAllTasks}
+            markAsDone={markAsDone}
+          />
+        }
       />
+      {!completedTasks.length ? (
+        ""
+      ) : (
+        <Container
+          classList={"nes-container is-dark with-title"}
+          children={
+            <CompletedTasks
+              tasks={completedTasks}
+              deleteTasks={deleteAllCompletedTasks}
+            />
+          }
+        />
+      )}
+
       <Container
         classList="nes-container is-dark with-title footer-container"
         children={<Footer />}
