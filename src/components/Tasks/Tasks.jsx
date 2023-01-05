@@ -1,6 +1,16 @@
+import { toast } from "react-hot-toast";
 import "./Tasks.css";
 
 export const Tasks = ({ tasks, removeTask, deleteAllTasks, markAsDone }) => {
+  const taskDeletedPoup = () =>
+    toast.error("Task deleted!", {
+      duration: 1500,
+    });
+  const allTasksDeletedPopup = () =>
+    toast.error("All tasks deleted", {
+      duration: 1500,
+    });
+
   return (
     <>
       <p className="title">Your tasks</p>
@@ -17,6 +27,7 @@ export const Tasks = ({ tasks, removeTask, deleteAllTasks, markAsDone }) => {
                 title="Remove task"
                 onClick={() => {
                   removeTask(task.id);
+                  taskDeletedPoup();
                 }}
               ></i>
               <label className="nes-pointer">
@@ -39,7 +50,10 @@ export const Tasks = ({ tasks, removeTask, deleteAllTasks, markAsDone }) => {
         <button
           type="button"
           className="nes-btn is-error"
-          onClick={deleteAllTasks}
+          onClick={() => {
+            deleteAllTasks();
+            allTasksDeletedPopup();
+          }}
         >
           Delete all tasks
         </button>

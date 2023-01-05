@@ -1,9 +1,28 @@
 import React, { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 import "./CreateTaskForm.css";
 
 export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [descriptionError, setdescriptionError] = useState("");
+  const [msgErrorStyle, setMsgErrorStyle] = useState({});
+  const [errorType, setErrorType] = useState("");
+
+  const isTitleEmpty = title === "",
+    isDescriptionEmpty = description === "";
+
+  const IsTitleLong = title.length > 40,
+    isDescriptionLong = description.length > 110;
+
+  const isTitleWhiteSpace = title.replace(/\s+/g, "").length === 0,
+    isDescriptionWhiteSpace = description.replace(/\s+/g, "").length === 0;
+
+  const taskAddedpopup = () =>
+    toast.success("Task added!", {
+      duration: 1500,
+    });
 
   const createNewTask = (title, description) => {
     const newTask = {
@@ -12,25 +31,6 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
     };
     addTaskToLocalStorageList(newTask);
   };
-
-  const [titleError, setTitleError] = useState("");
-  const [descriptionError, setdescriptionError] = useState("");
-
-  const isTitleEmpty = title === "";
-
-  const isDescriptionEmpty = description === "";
-
-  const IsTitleLong = title.length > 40;
-
-  const isDescriptionLong = description.length > 110;
-
-  const isTitleWhiteSpace = title.replace(/\s+/g, "").length === 0;
-
-  const isDescriptionWhiteSpace = description.replace(/\s+/g, "").length === 0;
-
-  const [msgErrorStyle, setMsgErrorStyle] = useState({});
-
-  const [errorType, setErrorType] = useState("");
 
   const handdleSubmit = (e) => {
     e.preventDefault();
@@ -70,6 +70,7 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
       setTitle("");
       setDescription("");
       setMsgErrorStyle({});
+      taskAddedpopup();
       e.target.reset();
     }
   };
@@ -98,10 +99,20 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
         {errorType}
       </span>
       <button className="nes-btn is-primary">Create</button>
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            color: "#1a1515",
+            border: "4px solid #1a1515",
+          },
+          error: {
+            style: {
+              background: "#fff",
+            },
+          },
+        }}
+      />
     </form>
   );
 };
-
-// {isTitleEmpty || isDescriptionEmpty
-//   ? "Your task should have both a title and a description"
-//   : "You've reached your maximum limit of characters allowed"}

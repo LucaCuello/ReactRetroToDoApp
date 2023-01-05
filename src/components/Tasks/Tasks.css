@@ -29,7 +29,7 @@
 }
 
 .delete-task {
-    position: absolute;
+    position: absolute !important;
     top: 10px;
     right: 10px;
 }
