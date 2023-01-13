@@ -1,16 +1,17 @@
 import { toast } from "react-hot-toast";
 import "./Tasks.css";
 
-export const Tasks = ({ tasks, removeTask, deleteAllTasks, markAsDone }) => {
-  const taskDeletedPoup = () =>
-    toast.error("Task deleted!", {
-      duration: 1500,
-    });
-  const allTasksDeletedPopup = () =>
-    toast.error("All tasks deleted", {
-      duration: 1500,
-    });
+const taskDeletedPoup = () =>
+  toast.success("Task deleted!", {
+    duration: 1500,
+  });
 
+const allTasksDeletedPopup = () =>
+  toast.success("All tasks deleted", {
+    duration: 1500,
+  });
+
+export const Tasks = ({ tasks, removeTask, deleteAllTasks, markAsDone }) => {
   return (
     <>
       <p className="title">Your tasks</p>

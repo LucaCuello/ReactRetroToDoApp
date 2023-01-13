@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import "./CreateTaskForm.css";
 
+const taskAddedpopup = () =>
+  toast.success("Task added!", {
+    duration: 1500,
+  });
+
 export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -18,11 +23,6 @@ export const CreateTaskForm = ({ addTaskToLocalStorageList }) => {
 
   const isTitleWhiteSpace = title.replace(/\s+/g, "").length === 0,
     isDescriptionWhiteSpace = description.replace(/\s+/g, "").length === 0;
-
-  const taskAddedpopup = () =>
-    toast.success("Task added!", {
-      duration: 1500,
-    });
 
   const createNewTask = (title, description) => {
     const newTask = {
