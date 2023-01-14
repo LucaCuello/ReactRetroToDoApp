@@ -6,7 +6,7 @@ This is a to-do app made with React.
 
 For the visuals, I've used this [amazing framework](https://github.com/nostalgic-css/NES.css). made by the NES.css team.
 
-I've also used this [repo](https://react-hot-toast.com/) for the toasts/notifications.
+I've also used [this](https://github.com/timolins/react-hot-toast/) repo for the toasts/notifications and [this](https://github.com/framer/motion) repo for mount/unmount transitions.
 
 [🔸Deploy](https://retrotodoapp.vercel.app/).
 
