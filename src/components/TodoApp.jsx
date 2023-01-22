@@ -11,8 +11,7 @@ export const TodoApp = () => {
     JSON.parse(localStorage.getItem("List")) || []
   );
 
-  const completedTasks =
-    JSON.parse(localStorage.getItem("CompletedTasks")) || [];
+  const completedTasks = JSON.parse(localStorage.getItem("CompletedTasks")) || [];
 
   const createTask = (newTask) => {
     if (!newTask) return;
@@ -55,17 +54,14 @@ export const TodoApp = () => {
         classList="nes-container is-dark with-title is-centered"
         children={<CreateTask saveTask={createTask} />}
       />
-      <Container
-        classList="nes-container with-title is-centered"
-        children={
-          <Tasks
-            tasks={StoragedTasks}
-            removeTask={deleteTask}
-            deleteAllTasks={deleteAllTasks}
-            markAsDone={markAsDone}
-          />
-        }
+
+      <Tasks
+        tasks={StoragedTasks}
+        removeTask={deleteTask}
+        deleteAllTasks={deleteAllTasks}
+        markAsDone={markAsDone}
       />
+
       {!completedTasks.length ? (
         ""
       ) : (

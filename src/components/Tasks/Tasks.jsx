@@ -1,6 +1,6 @@
 import { toast } from "react-hot-toast";
-import "./Tasks.css";
 import { motion, AnimatePresence } from "framer-motion";
+import "./Tasks.css";
 
 const taskDeletedPoup = () =>
   toast.success("Task deleted!", {
@@ -14,9 +14,16 @@ const allTasksDeletedPopup = () =>
 
 export const Tasks = ({ tasks, removeTask, deleteAllTasks, markAsDone }) => {
   return (
-    <>
-      <p className="title">Your tasks</p>
-      <AnimatePresence>
+    <AnimatePresence>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0 }}
+        className="nes-container with-title is-centered"
+        layout
+        transition={{ duration: 0.2 }}
+      >
+        <p className="title">Your tasks</p>
         {!tasks.length ? (
           <motion.p
             initial={{ scale: 0 }}
@@ -29,9 +36,10 @@ export const Tasks = ({ tasks, removeTask, deleteAllTasks, markAsDone }) => {
           tasks.map((task) => {
             return (
               <motion.div
-                initial={{ opacity: 0, translateY: 20 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                exit={{ opacity: 0, translateY: 20 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
                 className="task-container"
                 key={task.id}
               >
@@ -59,8 +67,6 @@ export const Tasks = ({ tasks, removeTask, deleteAllTasks, markAsDone }) => {
             );
           })
         )}
-      </AnimatePresence>
-      <AnimatePresence>
         {!tasks.length ? (
           ""
         ) : (
@@ -81,7 +87,7 @@ export const Tasks = ({ tasks, removeTask, deleteAllTasks, markAsDone }) => {
             Delete all tasks
           </motion.button>
         )}
-      </AnimatePresence>
-    </>
+      </motion.div>
+    </AnimatePresence>
   );
 };
