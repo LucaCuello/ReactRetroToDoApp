@@ -1,10 +1,11 @@
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 export const Container = ({ classList, children }) => {
   return (
     <AnimatePresence>
       <motion.div
+        layout
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0 }}
